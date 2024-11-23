@@ -1,13 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Benvingut!
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="ion-text-justify" id="data">
+    <ion-grid>
+      <ion-row class="ion-align-items-center" id="title"> 
+        <img [src]="img+'banner.jpeg'" class="pokeball">
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p>Benvolguts a tots i totes a la nostra Viquipèdia Pokémon. Aquí trobareu totes les dades necessàries de tots i cadascún dels pokémon que existeixen! Inclús podreu fer el vostre equip personalitzat.</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="ion-text-center">
+    <div class="links" [routerLink]="['/pokedex']">
+      <h5><ion-icon name="list-circle-outline"></ion-icon> Pokedex</h5>
+      </div>
+    <div class="links" [routerLink]="['/tipus']">
+      <h5><ion-icon name="keypad-outline"></ion-icon> Tipus</h5>
+    </div>
+    <div class="links" [routerLink]="['/regio']">
+      <h5><ion-icon name="compass-outline"></ion-icon> Regions</h5>
+    </div>
+    <div class="links" [routerLink]="['/equip']">
+      <h5><ion-icon name="accessibility-outline"></ion-icon> Equip</h5>
+    </div>
+  </div>
 </ion-content>
