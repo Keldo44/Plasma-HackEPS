@@ -8,20 +8,20 @@
     <ion-list>
       <ion-menu-toggle>
         <ion-item [routerLink]="['/home']" [routerLinkActive]="['activatedLink']">
-          <ion-label><ion-icon name="home-outline"></ion-icon> Inici</ion-label>
+          <ion-label style="display: flex; flex-flow: row; align-items: center;"><img src="../../../../assets/icon/pokemon-center-icon.png" alt="Pokédex" height="25" width="25">&nbsp;Inici</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item [routerLink]="['/pokedex']" [routerLinkActive]="['activatedLink']">
-          <ion-label><ion-icon name="list-circle-outline"></ion-icon> PokeDex</ion-label>
+          <ion-label style="display: flex; flex-flow: row; align-items: center;"><img src="../../../../assets/icon/pokedex-icon.png" alt="Pokédex" height="25" width="25">&nbsp;Pokédex</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
         <ion-item [routerLink]="['/mis-pokes']" [routerLinkActive]="['activatedLink']">
-          <ion-label><ion-icon name="keypad-outline"></ion-icon> Els meus Pokèmons</ion-label>
+          <ion-label style="display: flex; flex-flow: row; align-items: center;"><img src="../../../../assets/icon/masterball-icon.png" alt="Masterball" height="25" width="25">&nbsp;Els meus Pokémon</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      
+
     </ion-list>
   </ion-content>
 </ion-menu>
