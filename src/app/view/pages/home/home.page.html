@@ -19,7 +19,7 @@
     </ion-fab-button>
   </ion-fab>
 
-  <h1 id="debug-field" style="color:white;"> {{ variable }} </h1>
+  <h1 id="debug-field" style="color:white"> {{ variable }} </h1>
   <div class="ion-text-justify" id="data">
     <ion-grid>
       <ion-row class="ion-align-items-center" id="title"> 
@@ -35,17 +35,15 @@
     </div>
     <div [routerLink]="['/pokedex']">
       <h5> PokeDex </h5>
-      <img [src]="img+'pokedex.png'" class="menu-item">
-    </div>
-    <div>
-      <h5> Zones </h5>
       <img [src]="img+'zones.png'" class="menu-item">
     </div>
     <div>
+      <h5> Zones </h5>
+      <img [src]="img+'pokedex.png'" class="menu-item">
+    </div>
+    <div>
       <h5> Tornejos </h5>
-      <img id="vs" [src]="img+'vs.png'" style="filter: contrast(2) brightness(1.3); transform: scale(1.7);">
-
-
+      <img [src]="img+'pokeball.png'" class="menu-item">
     </div>
   </div>
 </ion-content>

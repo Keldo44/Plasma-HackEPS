@@ -17,6 +17,7 @@ export class HomePage implements OnInit {
 
   constructor(private _barcodeScanner: BarCodeService, private _pokemonService: PokemonServiceService) { 
     this.isGoogleBarcodeScannerModuleAvailable();
+    this.variable = this._pokemonService.varioble;
   }
 
 
@@ -35,17 +36,13 @@ export class HomePage implements OnInit {
     // Funció dedicada a escanejar el codi
       let done: boolean = await this._barcodeScanner.scan(); // Escanegem
       this.barcode_url = this._barcodeScanner.barcodes[0].rawValue;
-      this.variable = this._barcodeScanner.barcodes[0].rawValue;
+      
       // Obtenim el codi escanejat i el guardem      
-      this.retrievePokemon(); // Demanem que es retorni el pokemon i es mostrarà per pantalla
+      this._pokemonService.retrievePokemon(this.barcode_url); // Demanem que es retorni el pokemon i es mostrarà per pantalla
       return done;
     }
 
-  
 
-  retrievePokemon() { 
-    this._pokemonService.retrievePokemon(parseInt(this.barcode_url.split("/")[6]));
-  }
 
   get isSupported(): boolean {
     // Funció dedicada a obtenir si la funcionalitat d'escaneig està suportada
@@ -56,6 +53,8 @@ export class HomePage implements OnInit {
     // Funció dedicada a obtenir el resultat de l'escaneig
     return this._barcodeScanner.barcodes;
   }
+
+  
 
 }
 function retrievePokemon() {

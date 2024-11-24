@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -36,8 +36,21 @@ export class ApiServiceService {
     return this.http.get<any[]>(this.url_all + "teams/68fc2c0f-6c0a-4600-a052-66f26a6b26d4");
   }
 
-  getZonesById(url:string): Observable<any[]>{
+  getZonesByUrl(url:string): Observable<any[]>{
     return this.http.get<any[]>(url);
+  }
+
+  postZonesByUrl(url: string, id_team: any): Observable<any[]> {
+    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer your-token-here' 
+    });
+    let all_url = this.url_all + "/events/" + url;
+    const body = {
+      "team_id": id_team
+    }
+    return this.http.post<any[]>(all_url, body, { headers });
   }
 
 }

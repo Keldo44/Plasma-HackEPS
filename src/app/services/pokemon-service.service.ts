@@ -3,6 +3,7 @@ import { ApiServiceService } from './api-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Pokemons } from '../models/pokemons';
 import { teams } from '../models/teams';
+import { zones } from '../models/zones';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class PokemonServiceService {
   public _allPokemon: Pokemons[] = [];
   public _teamPokemons: Pokemons[] = [];
   public _myTeam!: teams;
+  public _zone!: zones;
+  public varioble: any;
 
   constructor(private _apiService: ApiServiceService, private http: HttpClient) {
     this.retrieveAllPokemon();
@@ -95,8 +98,22 @@ export class PokemonServiceService {
     
   }
 
-  retrievePokemon(id: number) {
-    
+  retrievePokemon(url: string) {
+    this._apiService.getZonesByUrl(url).subscribe({
+      next: async (response: any) => {
+          this._zone = response;
+      },
+      error: () => { },
+      complete: () => {
+        this._apiService.postZonesByUrl(this._zone.id, this._myTeam);
+       }
+    });
+
+  }
+
+  retrievePostPokemon(){
+    let variable = this._apiService.postZonesByUrl;
+    this.varioble = variable;
   }
 
   get teamPokemons(): Pokemons[] { return this._teamPokemons} 
