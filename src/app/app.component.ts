@@ -8,6 +8,6 @@ import { BarCodeService } from './services/bar-code.service';
 })
 export class AppComponent {
   constructor() {
-    //this._barcodeScanner.checkGoogleGarcodeScannerModule();
+    
   }
 }
