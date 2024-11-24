@@ -1,0 +1,61 @@
+.container{
+    margin: auto 1em;
+    width: 90%;
+}
+.logo{
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 3em;
+}
+.grid{
+    @extend .container;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    //gap: 1%;
+    //padding: 1em;
+    margin: auto ;
+    width: 80%;
+    position: relative;
+    &>*{
+        position: relative;
+        width: calc(50%);
+        border-radius: 10px;
+        aspect-ratio: 2 / 1;   
+        height: auto; 
+        margin-top: 5px;
+        object-fit: cover;
+          //display: none;
+        background-color: #cd9cff6a;
+        h5{
+            position:absolute;
+            margin: auto;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            height: fit-content;
+            width: fit-content;
+            padding: 10px;
+            font-size: 1.5em;
+            text-align: center;
+            text-shadow: 1px 1px 1px rgb(0, 0, 0);
+        }
+        img{
+            object-fit: cover;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+        &:hover{
+            background-size: 50%;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        
+    }
+}
