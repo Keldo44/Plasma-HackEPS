@@ -17,47 +17,35 @@ export class HomePage implements OnInit {
   public img: string = '../../../../assets/img/';
 
   constructor(private _barcodeScanner: BarCodeService) { 
-    /*this._supported = false;
-    this._moduleAvailable = false;
-    this._barcodes = [];*/
-    //this.isSupported();
+    this.isGoogleBarcodeScannerModuleAvailable();
   }
 
 
   ngOnInit() {
   }
 
-  /*async scan(): Promise<boolean> {
-    let done: boolean = await this._barcodeScanner.scan();
-    return done;
-  }
-
-  async checkGoogleGarcodeScannerModule(): Promise<void> {
-    BarcodeScanner.isGoogleBarcodeScannerModuleAvailable().then(
-      (avaliableModule: IsGoogleBarcodeScannerModuleAvailableResult) => {
-        this._moduleAvailable = avaliableModule.available;
-        if(!this._moduleAvailable) BarcodeScanner.installGoogleBarcodeScannerModule();
-      }
-    );
-  }
-
-  get moduleAvailable() {
-    if(!this._moduleAvailable) {
-      BarcodeScanner.isGoogleBarcodeScannerModuleAvailable().then(
-        (avaliableModule: IsGoogleBarcodeScannerModuleAvailableResult) => {
-          this._moduleAvailable = avaliableModule.available;
-        }
-      );
+  async isGoogleBarcodeScannerModuleAvailable() {
+    // Funció dedicada a saber si el mòdul d'escaneig de Google està disponible
+    let available: boolean = await this._barcodeScanner.isGoogleBarcodeScannerModuleAvailable();
+    if(available == false) { // En cas que no estigui disponible l'instal·lem
+      BarcodeScanner.installGoogleBarcodeScannerModule();
     }
-
-    return this._moduleAvailable;
   }
 
-  /*get isSupported(): boolean {
-    //return this._barcodeScanner.supported && this._barcodeScanner.moduleAvailable;
-  }*/
+  async scan(): Promise<boolean> {
+    // Funció dedicada a escanejar el codi
+      let done: boolean = await this._barcodeScanner.scan(); // Escanegem
+      return done;
+  }
 
- /* get barcodes(): Barcode[] {
+  get isSupported(): boolean {
+    // Funció dedicada a obtenir si la funcionalitat d'escaneig està suportada
+    return this._barcodeScanner.supported;
+  }
+
+  get barcodes(): Barcode[] {
+    // Funció dedicada a obtenir el resultat de l'escaneig
     return this._barcodeScanner.barcodes;
-  }*/
+  }
+
 }

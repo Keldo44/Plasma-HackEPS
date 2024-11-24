@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Barcode, BarcodeFormat, BarcodeScanner, IsSupportedResult, PermissionStatus, ScanOptions, ScanResult } from '@capacitor-mlkit/barcode-scanning';
+import { Barcode, BarcodeFormat, BarcodeScanner, IsGoogleBarcodeScannerModuleAvailableResult, IsSupportedResult, PermissionStatus, ScanOptions, ScanResult } from '@capacitor-mlkit/barcode-scanning';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BarCodeService {
-  checkGoogleGarcodeScannerModule() {
-    throw new Error('Method not implemented.');
-  }
 
   private _supported: boolean;
   private _barcodes: Barcode[];
+  private _moduleAvailable: boolean;
   
   constructor() {
     this._supported = false;
+    this._moduleAvailable = false;
     this._barcodes = [];
     this.isSupported();
   }
@@ -49,6 +48,33 @@ export class BarCodeService {
     }
     this._barcodes = [];
     return false;
+  }
+
+  async isGoogleBarcodeScannerModuleAvailable(): Promise<boolean> {
+    // Funció dedicada a comprovar si el mòdul d'escaneig de Google està disponible
+    const { available } = await BarcodeScanner.isGoogleBarcodeScannerModuleAvailable();
+    return available;
+  }
+
+  async checkGoogleGarcodeScannerModule(): Promise<void> {
+    BarcodeScanner.isGoogleBarcodeScannerModuleAvailable().then(
+      (avaliableModule: IsGoogleBarcodeScannerModuleAvailableResult) => {
+        this._moduleAvailable = avaliableModule.available;
+        if(!this._moduleAvailable) BarcodeScanner.installGoogleBarcodeScannerModule();
+      }
+    );
+  }
+
+  get moduleAvailable() {
+    if(!this._moduleAvailable) {
+      BarcodeScanner.isGoogleBarcodeScannerModuleAvailable().then(
+        (avaliableModule: IsGoogleBarcodeScannerModuleAvailableResult) => {
+          this._moduleAvailable = avaliableModule.available;
+        }
+      );
+    }
+
+    return this._moduleAvailable;
   }
 
   get barcodes(): Barcode[] {

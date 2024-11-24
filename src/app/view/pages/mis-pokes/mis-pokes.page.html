@@ -17,7 +17,7 @@
     <ion-row>
       <!-- Itera los Pokémon y coloca cada tarjeta en una columna -->
       <ion-col size="4" *ngFor="let pokemon of searchedPokemon;">
-        <ion-card class="pokemon-card" [routerLink]="['/pokemon', pokemon.id]">
+        <ion-card class="pokemon-card" [routerLink]="['/pokemon',pokemon.id]" [routerLinkActive]="['activatedLink']">
           <ion-card-header>
             <ion-img [src]="pokemon.image"></ion-img>
           </ion-card-header>
