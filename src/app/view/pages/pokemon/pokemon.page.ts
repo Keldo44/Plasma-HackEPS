@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pokemons } from 'src/app/models/pokemons';
 import { PokemonServiceService } from 'src/app/services/pokemon-service.service';
 
 @Component({
@@ -10,20 +11,25 @@ import { PokemonServiceService } from 'src/app/services/pokemon-service.service'
 export class PokemonPage implements OnInit {
 
   public pokemon_id: number = 0;
+  public pokemon: Pokemons | undefined;
   constructor(private pokemonservice: PokemonServiceService, private route: ActivatedRoute, private router: Router) {
 
     this.route.params.subscribe(params => {
-      let id: string = params['id'];
-      this.pokemon_id = parseInt(id);
-      //this.retrievePokemon();
-  
+      let id: number = params['id'];
+      this.pokemon_id = id;
     });
    }
 
   ngOnInit() {
+    this.pokemon = this.pokemonservice.retrievePokemonById(this.pokemon_id-1);
+    console.log(this.pokemon);
+    
   }
 
-  
+  tipusColor(tipus: any): any {
+    const color = tipus.type.name;
+    return {'background': 'var(--ion-color-' + color + ')', 'color': 'black', 'font-size': 'x-small'};
+  }
   
 
 

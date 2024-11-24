@@ -1,61 +1,90 @@
-.container{
+ion-content {
+    position: relative;
+    padding-top: 56px; 
+}
+
+.background-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; 
+}
+
+
+.container {
     margin: auto 1em;
     width: 90%;
 }
-.logo{
+
+.logo {
     height: auto;
     object-fit: contain;
     margin-bottom: 3em;
+    margin-top: 2em;
 }
-.grid{
-    @extend .container;
+
+.grid {
+    margin: auto;
+    width: 80%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    //gap: 1%;
-    //padding: 1em;
-    margin: auto ;
-    width: 80%;
+    gap: 1em;
     position: relative;
-    &>*{
-        position: relative;
-        width: calc(50%);
-        border-radius: 10px;
-        aspect-ratio: 2 / 1;   
-        height: auto; 
-        margin-top: 5px;
-        object-fit: cover;
-          //display: none;
-        background-color: #cd9cff6a;
-        h5{
-            position:absolute;
-            margin: auto;
-            top:0;
-            left:0;
-            right:0;
-            bottom:0;
-            height: fit-content;
-            width: fit-content;
-            padding: 10px;
-            font-size: 1.5em;
-            text-align: center;
-            text-shadow: 1px 1px 1px rgb(0, 0, 0);
-        }
-        img{
-            object-fit: cover;
-            overflow: hidden;
-            height: 100%;
-            width: 100%;
-        }
-        &:hover{
-            background-size: 50%;
-        }
-        *{
-            padding: 0;
-            margin: 0;
-        }
-        
-    }
+}
+
+.grid > * {
+    position: relative;
+    width: calc(45%);
+    border-radius: 10px;
+    aspect-ratio: 2 / 1;
+    height: auto;
+    margin-bottom: 1em;
+    background-color: #cd9cff6a;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+
+.grid > * h5 {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    font-size: 1.5em;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+    color: white;
+    z-index: 2; 
+}
+
+.grid > * img {
+    object-fit: cover;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    filter: blur(2px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.grid > *:hover {
+    background-size: 50%;
+}
+
+.grid > * * {
+    padding: 0;
+    margin: 0;
 }

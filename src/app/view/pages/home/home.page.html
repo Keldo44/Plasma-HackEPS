@@ -10,6 +10,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <img src="assets/img/background.png" class="background-img" />
+
+  <!--<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="scan()" [disabled]="!isSupported">
+      <ion-icon name="scan"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>-->
+
+
   <div class="ion-text-justify" id="data">
     <ion-grid>
       <ion-row class="ion-align-items-center" id="title"> 
@@ -19,20 +29,20 @@
   </div>
 
   <div class="grid">
-    <div>
-      <h5> Mis pokemons </h5>
+    <div [routerLink]="['/mis-pokes']" >
+      <h5> Els meus Pokemons </h5>
       <img [src]="img+'pokeball.png'" class="menu-item">
     </div>
-    <div>
-      <h5> Mis pokemons </h5>
+    <div [routerLink]="['/pokedex']">
+      <h5> PokeDex </h5>
       <img [src]="img+'zones.png'" class="menu-item">
     </div>
     <div>
-      <h5> Mis pokemons </h5>
+      <h5> Zones </h5>
       <img [src]="img+'pokedex.png'" class="menu-item">
     </div>
     <div>
-      <h5> Mis pokemons </h5>
+      <h5> Tornejos </h5>
       <img [src]="img+'pokeball.png'" class="menu-item">
     </div>
   </div>
