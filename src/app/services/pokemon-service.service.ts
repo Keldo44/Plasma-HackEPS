@@ -9,7 +9,7 @@ import { teams } from '../models/teams';
 })
 export class PokemonServiceService {
 
-  private _allPokemon: Pokemons[] = [];
+  public _allPokemon: Pokemons[] = [];
   public _teamPokemons: Pokemons[] = [];
   public _myTeam!: teams;
 
@@ -23,10 +23,8 @@ export class PokemonServiceService {
     this._apiService.allPokemon.subscribe({
       next: async (response: any) => {
         for (let index: number = 0; index < response.length; index++) {
-              this._allPokemon.push(response[index]);
-              
+              this._allPokemon.push(response[index]); 
         }
-        console.log(this._allPokemon);
         
       },
       error: () => { },
@@ -40,7 +38,6 @@ export class PokemonServiceService {
     this._apiService.myTeam.subscribe({
       next: async (response: any) => {
           this._myTeam = response;
-          //console.log(this._myTeam);
       },
       error: () => { },
       complete: () => {
@@ -51,8 +48,7 @@ export class PokemonServiceService {
   
   retrivePokemonsOfMyTeam(){
     for (let index = 0; index < this._myTeam.captured_pokemons.length; index++) {
-      let id_pokemon = this._myTeam.captured_pokemons[index].pokemon_id;
-      
+      let id_pokemon = this._myTeam.captured_pokemons[index].pokemon_id-1;  
       this._teamPokemons.push(this._allPokemon[id_pokemon]);
     }
        
