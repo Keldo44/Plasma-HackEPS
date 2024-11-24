@@ -90,8 +90,9 @@ export class PokemonServiceService {
   }
 
   retrievePokemonById(id: number){
-    //let pokemon = 
-
+    let pokemon = this._allPokemon[id];
+    return pokemon;
+    
   }
   get teamPokemons(): Pokemons[] { return this._teamPokemons} 
 }
