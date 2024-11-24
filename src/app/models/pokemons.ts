@@ -51,5 +51,5 @@ export interface Pokemons {
         },
     ],
     "weight": number
-
+    "isCaught": boolean | undefined
 }

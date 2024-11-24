@@ -1,0 +1,30 @@
+.pokemon-card {
+    text-align: center;
+    margin: 8px;
+}
+
+ion-img {
+    max-width: 100px;
+    aspect-ratio: 1;
+    object-fit: contain;
+    margin: auto;
+}
+ion-card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    *{
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        
+    }
+}
+
+h6{
+    width: fit-content;
+    font-size: 0.5em;
+}
+  
