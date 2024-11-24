@@ -7,13 +7,13 @@
       PokeDex
     </ion-title>
   </ion-toolbar>
-  <!--<ion-toolbar>
-    <ion-searchbar placeholder="Busca" (ionChange)="searchPokemon($event)"></ion-searchbar>
-  </ion-toolbar>-->
+  <ion-toolbar>
+    <ion-searchbar placeholder="Busca" (ionInput)="searchPokemon($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor = "let pokemon of allPokemon;" class="no-padding">
+  <ion-card *ngFor = "let pokemon of searchedPokemon" class="no-padding">
     <ion-card-header>
       <ion-grid>
         <ion-row class="ion-align-items-center">
