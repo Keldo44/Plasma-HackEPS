@@ -31,6 +31,14 @@ export class PokemonPage implements OnInit {
     return {'background': 'var(--ion-color-' + color + ')', 'color': 'black', 'font-size': 'x-small'};
   }
   
-
-
+  getStatColor(baseStat: number): string {
+    if (baseStat > 0 && baseStat < 50) {
+      return 'red';
+    } else if (baseStat >= 50 && baseStat < 100) {
+      return 'yellow';
+    }else {
+      return 'green';
+    }
+  }
+  
 }

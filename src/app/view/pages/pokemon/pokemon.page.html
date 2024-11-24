@@ -18,7 +18,7 @@
   </ion-header>
 
 
-  
+
   <div *ngIf="pokemon">
 
     <ion-img [src]="pokemon.image"></ion-img>
@@ -43,30 +43,23 @@
         </ion-row>
       </ion-grid>
     </div>
-  </ion-card>
 
-      <ion-accordion-group class="ion-margin-bottom">
-        <ion-accordion value="first">
-          <ion-item slot="header" color="light">
-            <ion-label>Característiques de combat</ion-label>
-          </ion-item>
-          <div slot="content">
-            <ion-list *ngFor="let stat of pokemon.stats">
-              <ion-item>
-                <ion-label>HP {{stat.base_stat}}</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label>Atac {{stat.effort}}</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label>Defensa {{stat.stat.name}}</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label>Atac especial {{stat.stat.url}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </div>
-        </ion-accordion>
-      </ion-accordion-group>
+    <div *ngFor="let stat of pokemon.stats" class="stat-bar-container">
+      <!-- Stat name and value -->
+      <p>
+        {{ stat.stat.name.charAt(0).toUpperCase() }}{{ stat.stat.name.slice(1) }}: 
+        {{ stat.base_stat }}
+      </p>
+    
+      <!-- Bar graph -->
+      <div 
+        class="stat-bar" 
+        [ngStyle]="{
+          'width': stat.base_stat + 'px',
+          'background-color': this.getStatColor(stat.base_stat)
+        }">
+      </div>
+    </div>
+    
   </div>
 </ion-content>
