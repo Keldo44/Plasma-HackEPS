@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <img src="assets/img/pokemon.png" class="background-img" />
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Pokemon</ion-title>
@@ -17,7 +18,7 @@
   </ion-header>
 
 
-
+  
   <div *ngIf="pokemon">
 
     <ion-img [src]="pokemon.image"></ion-img>
