@@ -13,7 +13,6 @@ export class MisPokesPage implements OnInit {
 
   public _teamPokemons: Pokemons[] = [];
   public searchedPokemon: Pokemons[] = [];
-
   constructor(private pokemonService: PokemonServiceService) {
     this._teamPokemons = this.pokemonService._teamPokemons;
     this.searchedPokemon = this._teamPokemons;
