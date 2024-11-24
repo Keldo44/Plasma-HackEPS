@@ -36,4 +36,8 @@ export class ApiServiceService {
     return this.http.get<any[]>(this.url_all + "teams/68fc2c0f-6c0a-4600-a052-66f26a6b26d4");
   }
 
+  getZonesById(url:string): Observable<any[]>{
+    return this.http.get<any[]>(url);
+  }
+
 }

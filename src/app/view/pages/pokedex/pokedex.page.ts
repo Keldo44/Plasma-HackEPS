@@ -24,7 +24,10 @@ export class PokedexPage implements OnInit {
 
     this.teamPokemons = this.pokemonService._teamPokemons; // Ex: carregar des del servei
     this.allPokemons = this.pokemonService._allPokemon; // Ex: carregar des del servei
-    this.pokemonService.manualIsCaught(); 
+
+    console.log("Pokemons ", this.teamPokemons, " i allPokemons ", this.allPokemons);
+
+    this.pokemonService.manualIsCaught();
   }
 
   searchPokemon(event: any){

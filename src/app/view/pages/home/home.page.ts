@@ -11,12 +11,11 @@ import { TeamServiceService } from 'src/app/services/team-service.service';
 })
 export class HomePage implements OnInit {
 
-  /*private _supported: boolean;
-  private _moduleAvailable: boolean;
-  private _barcodes: Barcode[];*/
+  public barcode_url: string = "";
   public img: string = '../../../../assets/img/';
+  public variable: string = "";
 
-  constructor(private _barcodeScanner: BarCodeService) { 
+  constructor(private _barcodeScanner: BarCodeService, private _pokemonService: PokemonServiceService) { 
     this.isGoogleBarcodeScannerModuleAvailable();
   }
 
@@ -35,7 +34,17 @@ export class HomePage implements OnInit {
   async scan(): Promise<boolean> {
     // Funció dedicada a escanejar el codi
       let done: boolean = await this._barcodeScanner.scan(); // Escanegem
+      this.barcode_url = this._barcodeScanner.barcodes[0].rawValue;
+      this.variable = this._barcodeScanner.barcodes[0].rawValue;
+      // Obtenim el codi escanejat i el guardem      
+      this.retrievePokemon(); // Demanem que es retorni el pokemon i es mostrarà per pantalla
       return done;
+    }
+
+  
+
+  retrievePokemon() { 
+    this._pokemonService.retrievePokemon(parseInt(this.barcode_url.split("/")[6]));
   }
 
   get isSupported(): boolean {
@@ -49,3 +58,7 @@ export class HomePage implements OnInit {
   }
 
 }
+function retrievePokemon() {
+  throw new Error('Function not implemented.');
+}
+

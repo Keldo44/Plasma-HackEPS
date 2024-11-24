@@ -23,17 +23,17 @@ export class PokemonServiceService {
   
   manualIsCaught(){
 
-    console.log("El this es", this._allPokemon);
+    // console.log("El this es", this._allPokemon);
 
       // Itera sobre cada Pokémon de `searchedPokemon`
 
     //   console.log(this._allPokemon);
 
 
-    //   for (var mokepon in this._allPokemon){
+      // for (var mokepon in this._allPokemon){
         
-    //     console.log("Mokepon es: ", mokepon);
-    //   }
+      //   console.log("Mokepon es: ", mokepon);
+      // }
 
 
     // this._allPokemon.forEach(pokemon => {
@@ -43,13 +43,13 @@ export class PokemonServiceService {
     //   // Inicialitza o actualitza la propietat `isCaught`
     //   pokemon.isCaught = isInTeam;
     // });
-    console.log("Encara chuta!");
+    // console.log("Encara chuta!");
 
-    this._allPokemon.forEach(pokemon => {
-      console.log("Mokepon es: ", pokemon.id);
-      const isInTeam = this._teamPokemons.some(teammate => teammate.id == pokemon.id);
-      pokemon.isCaught = isInTeam;
-    });
+    // this._allPokemon.forEach(pokemon => {
+    //   console.log("Mokepon es: ", pokemon.id);
+    //   const isInTeam = this._teamPokemons.some(teammate => teammate.id == pokemon.id);
+    //   pokemon.isCaught = isInTeam;
+    // });
 
   }
   async retrieveAllPokemon() {
@@ -94,5 +94,10 @@ export class PokemonServiceService {
     return pokemon;
     
   }
+
+  retrievePokemon(id: number) {
+    
+  }
+
   get teamPokemons(): Pokemons[] { return this._teamPokemons} 
 }

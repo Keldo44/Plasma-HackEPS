@@ -8,12 +8,14 @@ export class BarCodeService {
 
   private _supported: boolean;
   private _barcodes: Barcode[];
+  private _resultat: Barcode[];
   private _moduleAvailable: boolean;
   
   constructor() {
     this._supported = false;
     this._moduleAvailable = false;
     this._barcodes = [];
+    this._resultat = [];
     this.isSupported();
   }
 
@@ -43,7 +45,7 @@ export class BarCodeService {
 
       const result: ScanResult = await BarcodeScanner.scan(options);
       this._barcodes = result.barcodes;
-
+      this._resultat = result.barcodes;
       return true;
     }
     this._barcodes = [];
@@ -75,6 +77,11 @@ export class BarCodeService {
     }
 
     return this._moduleAvailable;
+  }
+
+  get resultat(): Barcode[] {
+    // Funció dedicada a retornar els codis
+    return this._resultat;
   }
 
   get barcodes(): Barcode[] {
