@@ -1,3 +1,9 @@
+*{
+    font-family: "Tiny5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 ion-header {
     background: linear-gradient(to bottom, #0e3eaa, #010a40); 
     color: white; 
@@ -8,6 +14,19 @@ ion-header {
 ion-content {
     position: relative;
     --background: none;
+}
+
+ion-card{
+    color: white;
+    padding: 5px;
+    background-color: rgba(80, 0, 130, 0.5);
+    border: 5px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgb(170, 50, 239);
+}
+
+ion-card-subtitle, ion-card-title{
+    color: white;
 }
 
 .background-img {
