@@ -53,6 +53,11 @@ export class PokemonServiceService {
     }
        
   }
+
+  retrievePokemonById(id: number){
+    //let pokemon = 
+
+  }
   get allPokemon(): Pokemons[] { return this._allPokemon; }
   get teamPokemons(): Pokemons[] { return this._teamPokemons} 
 }
