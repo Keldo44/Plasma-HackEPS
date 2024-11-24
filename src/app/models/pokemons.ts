@@ -1,6 +1,6 @@
 export interface Pokemons {
     "id": 1,
-    "name": "bulbasaur",
+    "name": string,
     "abilities": [
         {
             "ability": {
