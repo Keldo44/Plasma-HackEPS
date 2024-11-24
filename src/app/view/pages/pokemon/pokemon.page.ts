@@ -21,6 +21,7 @@ export class PokemonPage implements OnInit {
    }
 
   ngOnInit() {
+    
   }
 
   

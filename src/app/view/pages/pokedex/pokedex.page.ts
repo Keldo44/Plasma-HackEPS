@@ -11,44 +11,27 @@ import { TeamServiceService } from 'src/app/services/team-service.service';
 export class PokedexPage implements OnInit {
 
   public searchedPokemon: Pokemons[] = [];
+  public teamPokemons: Pokemons[] = []; 
+  public allPokemons: Pokemons [] = [];
 
   constructor(
     private pokemonService: PokemonServiceService,
     private TeamService: TeamServiceService
+
   ) { }
 
   ngOnInit() {
-    this.checkPokemonInTeam();
-    this.searchedPokemon = this.pokemonService.allPokemon;
-  }
 
-  // Get all Pokémon
-  get allPokemon(): Pokemons[] { 
-    return this.pokemonService.allPokemon; 
+    this.teamPokemons = this.pokemonService._teamPokemons; // Ex: carregar des del servei
+    this.allPokemons = this.pokemonService._allPokemon; // Ex: carregar des del servei
+    this.pokemonService.manualIsCaught(); 
   }
-
-  // Get team Pokémon
-  get teamPokemons(): Pokemons[] { 
-    return this.TeamService._teamPokemons; 
-  }
-
-  // Method to check if all Pokémon IDs exist in the team
-  checkPokemonInTeam(): void {
-    this.allPokemon.forEach(pokemon => {
-      pokemon.isCaught = this.teamPokemons.some(teamPokemon => teamPokemon.id === pokemon.id);
-      if(pokemon.isCaught == undefined) {
-        pokemon.isCaught = false
-      }
-    });
-  }
-  
-
 
   searchPokemon(event: any){
     const text = event.target.value?.trim()?.toLowerCase(); 
     if (text) {
       this.searchedPokemon = this.pokemonService.allPokemon.filter((poke: Pokemons) =>
-        poke.name.toLowerCase().includes(text)
+        poke.name.toLowerCase().includes(text) && poke.isCaught == true
       );
     } else {
       this.searchedPokemon = this.pokemonService.allPokemon;
