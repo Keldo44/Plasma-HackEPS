@@ -23,7 +23,16 @@ export class PokedexPage implements OnInit {
   ngOnInit() {
 
     this.teamPokemons = this.pokemonService._teamPokemons; // Ex: carregar des del servei
-    this.allPokemons = this.pokemonService._allPokemon; // Ex: carregar des del servei
+    this.allPokemons = this.pokemonService._allPokemon;
+    this.searchedPokemon = this.allPokemons; // Ex: carregar des del servei
+  }
+
+  pokemonCaught(pokemon: Pokemons): boolean{
+    if(this.teamPokemons.find(p => p.id === pokemon.id)){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   searchPokemon(event: any){

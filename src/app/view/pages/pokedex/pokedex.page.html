@@ -17,19 +17,37 @@
   <ion-grid>
     <ion-row>
       <ion-col size="4" *ngFor="let pokemon of searchedPokemon">
-        <ion-card class="pokemon-card" [routerLink]="['/pokemon', pokemon.id]">
+        <!-- Card for Not Caught Pokémon -->
+        <ion-card class="pokemon-card" [routerLink]="['/pokemon', pokemon.id]" *ngIf="!pokemonCaught(pokemon)">
           <ion-card-header>
             <ion-img 
               [src]="pokemon.image"
-              [style.filter]="!pokemon.isCaught ? 'brightness(0%)' : 'none'">
+              [style.filter]="'brightness(0%)'">
             </ion-img>
           </ion-card-header>
           <ion-card-content>
             <ion-card-subtitle>
-              {{ pokemon.isCaught ? 'N.º ' + pokemon.id : '???' }}
+              ???
             </ion-card-subtitle>
             <ion-card-title class="ion-text-uppercase">
-              <h6>{{ pokemon.isCaught ? pokemon.name : '---------' }}</h6>
+              <h6>---------</h6>
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+
+        <!-- Card for Caught Pokémon -->
+        <ion-card class="pokemon-card" [routerLink]="['/pokemon', pokemon.id]" *ngIf="pokemonCaught(pokemon)">
+          <ion-card-header>
+            <ion-img 
+              [src]="pokemon.image">
+            </ion-img>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-subtitle>
+              N.º {{ pokemon.id }}
+            </ion-card-subtitle>
+            <ion-card-title class="ion-text-uppercase">
+              <h6>{{ pokemon.name }}</h6>
             </ion-card-title>
           </ion-card-content>
         </ion-card>
