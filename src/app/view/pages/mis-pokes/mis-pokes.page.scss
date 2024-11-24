@@ -1,3 +1,14 @@
+ion-header {
+    background: linear-gradient(to bottom, #0e3eaa, #010a40); 
+    color: white; 
+    --ion-toolbar-background: transparent; 
+    --ion-toolbar-color: white; 
+}
+
+ion-toolbar {
+    background: transparent;
+    color: white;
+}
 .pokemon-card {
     text-align: center;
     margin: 8px;
