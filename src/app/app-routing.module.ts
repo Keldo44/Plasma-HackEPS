@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./view/pages/pokedex/pokedex.module').then( m => m.PokedexPageModule)
   },
   {
-    path: 'pokemon',
+    path: 'pokemon/:id',
     loadChildren: () => import('./view/pages/pokemon/pokemon.module').then( m => m.PokemonPageModule)
   },
   {

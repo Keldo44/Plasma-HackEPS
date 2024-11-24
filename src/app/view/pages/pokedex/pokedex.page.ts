@@ -10,14 +10,16 @@ import { TeamServiceService } from 'src/app/services/team-service.service';
 })
 export class PokedexPage implements OnInit {
 
+  public searchedPokemon: Pokemons[] = [];
+
   constructor(
     private pokemonService: PokemonServiceService,
     private TeamService: TeamServiceService
   ) { }
 
-
   ngOnInit() {
     this.checkPokemonInTeam();
+    this.searchedPokemon = this.pokemonService.allPokemon;
   }
 
   // Get all Pokémon
@@ -39,4 +41,18 @@ export class PokedexPage implements OnInit {
       }
     });
   }
+  
+
+
+  searchPokemon(event: any){
+    const text = event.target.value?.trim()?.toLowerCase(); 
+    if (text) {
+      this.searchedPokemon = this.pokemonService.allPokemon.filter((poke: Pokemons) =>
+        poke.name.toLowerCase().includes(text)
+      );
+    } else {
+      this.searchedPokemon = this.pokemonService.allPokemon;
+    }
+  }
+  
 }

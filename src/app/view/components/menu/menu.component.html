@@ -1,3 +1,27 @@
-<p>
-  menu works!
-</p>
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>PokeMenú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item [routerLink]="['/home']" [routerLinkActive]="['activatedLink']">
+          <ion-label><ion-icon name="home-outline"></ion-icon> Inici</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item [routerLink]="['/pokedex']" [routerLinkActive]="['activatedLink']">
+          <ion-label><ion-icon name="list-circle-outline"></ion-icon> PokeDex</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item [routerLink]="['/mis-pokes']" [routerLinkActive]="['activatedLink']">
+          <ion-label><ion-icon name="keypad-outline"></ion-icon> Els meus Pokèmons</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      
+    </ion-list>
+  </ion-content>
+</ion-menu>

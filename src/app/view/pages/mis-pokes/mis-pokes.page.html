@@ -1,6 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>MisPokes</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Els meus pokèmons
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Busca" (ionInput)="searchPokemon($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +16,7 @@
   <ion-grid>
     <ion-row>
       <!-- Itera los Pokémon y coloca cada tarjeta en una columna -->
-      <ion-col size="4" *ngFor="let pokemon of _teamPokemons;">
+      <ion-col size="4" *ngFor="let pokemon of searchedPokemon;">
         <ion-card class="pokemon-card">
           <ion-card-header>
             <ion-img [src]="pokemon.image"></ion-img>
