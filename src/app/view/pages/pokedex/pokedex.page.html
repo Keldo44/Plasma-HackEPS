@@ -18,7 +18,7 @@
     <ion-row>
       <ion-col size="4" *ngFor="let pokemon of searchedPokemon">
         <!-- Card for Not Caught Pokémon -->
-        <ion-card class="pokemon-card" [routerLink]="['/pokemon', pokemon.id]" *ngIf="!pokemonCaught(pokemon)">
+        <ion-card class="pokemon-card" [routerLink]="['/pokemon', pokemon.id]" *ngIf="!pokemonCaught(pokemon)" [style.pointer-events]="'none'" >
           <ion-card-header>
             <ion-img 
               [src]="pokemon.image"
