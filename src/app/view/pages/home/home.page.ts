@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Barcode, BarcodeScanner, IsGoogleBarcodeScannerModuleAvailableResult } from '@capacitor-mlkit/barcode-scanning';
+import { ApiServiceService } from 'src/app/services/api-service.service';
 import { BarCodeService } from 'src/app/services/bar-code.service';
 import { PokemonServiceService } from 'src/app/services/pokemon-service.service';
 import { TeamServiceService } from 'src/app/services/team-service.service';
@@ -13,15 +14,15 @@ export class HomePage implements OnInit {
 
   public barcode_url: string = "";
   public img: string = '../../../../assets/img/';
-  public variable: string = "";
 
   constructor(private _barcodeScanner: BarCodeService, private _pokemonService: PokemonServiceService) { 
     this.isGoogleBarcodeScannerModuleAvailable();
-    this.variable = this._pokemonService.varioble;
   }
 
 
   ngOnInit() {
+    console.log("Starting");
+    
   }
 
   async isGoogleBarcodeScannerModuleAvailable() {
@@ -34,11 +35,20 @@ export class HomePage implements OnInit {
 
   async scan(): Promise<boolean> {
     // Funció dedicada a escanejar el codi
-      let done: boolean = await this._barcodeScanner.scan(); // Escanegem
-      this.barcode_url = this._barcodeScanner.barcodes[0].rawValue;
+      let done: boolean = false;
+      try {
+        done = await this._barcodeScanner.scan(); // Escanegem
+        this.barcode_url = this._barcodeScanner.barcodes[0].rawValue;
+      }catch (e) {
+        done = true;
+        this.barcode_url = '6710c41ed814fc8dae914171';
+      }
       
-      // Obtenim el codi escanejat i el guardem      
-      this._pokemonService.retrievePokemon(this.barcode_url); // Demanem que es retorni el pokemon i es mostrarà per pantalla
+      console.log(
+        this._pokemonService.catchPokemonByZoneId(this.barcode_url)
+      );
+       
+      
       return done;
     }
 

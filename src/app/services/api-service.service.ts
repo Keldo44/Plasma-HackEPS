@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Pokemons } from '../models/pokemons';
+import { pikachu } from '../models/pikacu';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,17 +42,21 @@ export class ApiServiceService {
     return this.http.get<any[]>(url);
   }
 
-  postZonesByUrl(url: string, id_team: any): Observable<any[]> {
+  postZonesByUrl(url: string, id_team: any): Observable<any[]>{
     
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer your-token-here' 
     });
-    let all_url = this.url_all + "/events/" + url;
+    let all_url = this.url_all + "events/" + url;
     const body = {
       "team_id": id_team
     }
-    return this.http.post<any[]>(all_url, body, { headers });
+    const poke = this.http.post<any[]>(all_url, body, { headers });
+    
+    
+
+    return poke;
   }
 
 }

@@ -14,12 +14,11 @@
   <img src="assets/img/background.png" class="background-img" />
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="scan()" [disabled]="!isSupported">
+    <ion-fab-button (click)="scan()" >
       <ion-icon name="scan"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <h1 id="debug-field" style="color:white"> {{ variable }} </h1>
   <div class="ion-text-justify" id="data">
     <ion-grid>
       <ion-row class="ion-align-items-center" id="title"> 

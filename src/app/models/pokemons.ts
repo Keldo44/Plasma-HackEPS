@@ -1,16 +1,14 @@
 export interface Pokemons {
-    "id": 1,
+    "id": number,
     "name": string,
-    "abilities": [
-        {
-            "ability": {
+    "abilities": {
+        "ability": {
                 "name": string,
                 "url": string
             },
             "is_hidden": boolean,
             "slot": number
-        },
-        ],
+    }[],
     "cries": string,
     "height": number,
     "location_area_encounters": [
@@ -20,27 +18,23 @@ export interface Pokemons {
         "name": string,
         "id": string
     },
-    "moves": [
-        {
-            "name": string,
-            "url": string
-        },       
-    ],
+    "moves": {
+        "name": string,
+        "url": string
+    }[],
     "species": {
         "name": string,
         "url": string
     },
     "image": string,
-    "stats": [
-        {
-            "base_stat": number,
-            "effort": number,
-            "stat": {
-                "name": string,
-                "url": string
-            }
-        },    
-    ],
+    "stats": {
+        "base_stat": number,
+        "effort": number,
+        "stat": {
+            "name": string,
+            "url": string
+        }
+    }[],
     "types": [
         {
             "slot": number,

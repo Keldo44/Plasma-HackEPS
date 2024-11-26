@@ -1,13 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>NoCapturat</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      No has capturat res parguela
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="no-capture-content">
+  <!-- Collapsible header for large title -->
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">NoCapturat</ion-title>
+      <ion-title size="large">No Pokémon Captured</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <!-- Content section -->
+  <div class="content-wrapper">
+    <ion-img src="../../../../assets/img/sad-ash.png" alt="Empty Pokéball"></ion-img>
+    <h2>No Pokémon Caught Yet!</h2>
+    <p>It looks like you haven’t captured any Pokémon yet. Start exploring and capturing Pokémon to build your team!</p>
+
+    <!-- Button to navigate back to zones -->
+    <ion-button expand="block" fill="solid" color="primary" routerLink="/zones">
+      Explore Zones
+    </ion-button>
+
+    <!-- Fun animation or tip -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Tip</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Don’t forget to check rare zones for high-level Pokémon!
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

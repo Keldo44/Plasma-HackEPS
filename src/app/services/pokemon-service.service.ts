@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Pokemons } from '../models/pokemons';
 import { teams } from '../models/teams';
 import { zones } from '../models/zones';
+import { Router, CanActivate} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class PokemonServiceService {
   public _zone!: zones;
   public varioble: any;
 
-  constructor(private _apiService: ApiServiceService, private http: HttpClient) {
+  constructor(private _apiService: ApiServiceService, private http: HttpClient, private router: Router) {
     this.retrieveAllPokemon();
    }
 
@@ -24,37 +25,7 @@ export class PokemonServiceService {
   get allPokemon(): Pokemons[] { return this._allPokemon; }
 
   
-  manualIsCaught(){
-
-    // console.log("El this es", this._allPokemon);
-
-      // Itera sobre cada Pokémon de `searchedPokemon`
-
-    //   console.log(this._allPokemon);
-
-
-      // for (var mokepon in this._allPokemon){
-        
-      //   console.log("Mokepon es: ", mokepon);
-      // }
-
-
-    // this._allPokemon.forEach(pokemon => {
-    //   // Comprova si el Pokémon està en l'equip
-    //   const isInTeam = this._teamPokemons.some(teammate => teammate.id === pokemon.id);
-
-    //   // Inicialitza o actualitza la propietat `isCaught`
-    //   pokemon.isCaught = isInTeam;
-    // });
-    // console.log("Encara chuta!");
-
-    // this._allPokemon.forEach(pokemon => {
-    //   console.log("Mokepon es: ", pokemon.id);
-    //   const isInTeam = this._teamPokemons.some(teammate => teammate.id == pokemon.id);
-    //   pokemon.isCaught = isInTeam;
-    // });
-
-  }
+ 
   async retrieveAllPokemon() {
 
     this._allPokemon = [];
@@ -75,7 +46,7 @@ export class PokemonServiceService {
   async retrieveMyteam() {
     this._apiService.myTeam.subscribe({
       next: async (response: any) => {
-          this._myTeam = response;
+          this._myTeam = response;          
       },
       error: () => { },
       complete: () => {
@@ -115,6 +86,42 @@ export class PokemonServiceService {
     let variable = this._apiService.postZonesByUrl;
     this.varioble = variable;
   }
+
+  catchPokemonByZoneId(id: string) {
+    console.log(this._myTeam.id);
+  
+    this._apiService.postZonesByUrl(id, this._myTeam.id).subscribe({
+      next: (response: any) => {
+        console.log('API Response:', response);
+  
+        // Extract the pokemon_uuid_list array
+        const pokemonList = Array.isArray(response.pokemon_uuid_list)
+          ? response.pokemon_uuid_list
+          : [];
+  
+        // Filter and extract the latest pokemon_id
+        const latestPokemon = pokemonList
+          .filter((entry:any) => entry.pokemon_id !== undefined) // Ensure pokemon_id exists
+          .map((entry:any) => entry.pokemon_id) // Extract pokemon_id
+          .pop(); // Get the last one
+  
+        if (latestPokemon) {
+          this.router.navigate(['/pokemon/' + latestPokemon]);
+        } else {
+          this.router.navigate(['no-capturat']);
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching Pokémon by zone ID:', err);
+        this.router.navigate(['no-capturat']);
+      },
+      complete: () => {
+        console.log('API call completed.');
+      },
+    });
+  }
+  
+  
 
   get teamPokemons(): Pokemons[] { return this._teamPokemons} 
 }
