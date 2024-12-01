@@ -27,6 +27,15 @@ const routes: Routes = [
     path: 'no-capturat',
     loadChildren: () => import('./view/pages/no-capturat/no-capturat.module').then( m => m.NoCapturatPageModule)
   },
+  {
+    path: 'zones',
+    loadChildren: () => import('./view/pages/zones/zones.module').then( m => m.ZonesPageModule)
+  },  {
+    path: 'zones',
+    loadChildren: () => import('./view/pages/zones/zones.module').then( m => m.ZonesPageModule)
+  },
+
+
 
 ];
 

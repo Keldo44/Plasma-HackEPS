@@ -1,0 +1,168 @@
+@mixin gridMeshWithSubdivisions($grid-size, $subdivision-size, $line-color, $subdivision-color, $background-color) {
+    background-color: $background-color;
+
+    // Main purple grid lines (larger, thicker lines)
+    background-image: 
+      linear-gradient(to right, $line-color 2px, transparent 2px),  // Thicker purple lines for the main grid
+      linear-gradient(to bottom, $line-color 2px, transparent 2px),
+
+      // Thinner purple subdivision lines inside each larger square
+      linear-gradient(to right, $subdivision-color 1px, transparent 1px),  // Subdivision lines in darker purple
+      linear-gradient(to bottom, $subdivision-color 1px, transparent 1px);  // Subdivision lines in darker purple
+
+    // Setting the background size for both grids
+    background-size: $grid-size $grid-size, $grid-size $grid-size, $subdivision-size $subdivision-size, $subdivision-size $subdivision-size;
+
+    background-position: 50% 50%;
+          // Subdivision lines also starting at top-left corner but repeating inside each grid cell
+}
+
+  
+  
+  
+.zones-container {
+    padding: 16px;
+    height: 100%;
+    @include gridMeshWithSubdivisions(50px, 10px, #8400ff65, #ff00d42a, #1d1d1d);
+
+    .loading-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 16px 0;
+      width: 100%;
+      aspect-ratio: 3 / 1; /* Ensure 3:1 aspect ratio for placeholders */
+      background: #e0e0e04c;
+      border-radius: 12px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInUp 1.5s ease forwards;
+        /* Use a loop to set animation delays */
+        @for $i from 1 through 4 {  // Adjust the range based on the number of cards
+            &:nth-child(#{$i}) {
+            animation-delay: $i * 0.1s;
+            }
+        }
+      
+  
+      .loading-img {
+        width: 60px;
+        height: 60px;
+        background: rgb(255, 255, 255);
+        border-radius: 50%;
+        margin-bottom: 8px;
+        animation: shimmer 1s infinite linear;
+      }
+  
+      .loading-text {
+        width: 50%;
+        height: 16px;
+        background: rgba(255, 255, 255, 0.4);
+        animation: shimmer 1s infinite linear;
+        border-radius: 8px;
+      }
+    }
+  
+    .zones-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+  
+      .zone-card {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 3 / 1; /* Ensures a 3:1 horizontal aspect ratio */
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        opacity: 0; /* Start with invisible */
+        transform: translateY(20px); /* Start slightly lower */
+        animation: fadeInUp 0.5s ease forwards;
+        /* Use a loop to set animation delays */
+        @for $i from 1 through 4 {  // Adjust the range based on the number of cards
+            &:nth-child(#{$i}) {
+            animation-delay: $i * 0.1s;
+            }
+        }
+        
+  
+        &:hover {
+          transform: translateY(-4px); /* Moves slightly up on hover */
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+  
+        .zone-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(0.6); /* Darkens the image slightly */
+          transition: filter 0.3s ease;
+  
+          &:hover {
+            filter: brightness(0.4); /* Darkens more on hover */
+          }
+        }
+  
+        .zone-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5); /* Transparent dark overlay */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          color: #ffffff;
+          font-size: 18px;
+          font-weight: bold;
+          padding: 0 16px;
+          transition: background 0.3s ease;
+  
+          &:hover {
+            background: rgba(0, 0, 0, 0.7); /* Darkens the overlay on hover */
+          }
+        }
+      }
+    }
+  }
+  
+  /* Fade-up animation for loaded cards */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px); /* Start slightly lower */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Move to the original position */
+    }
+  }
+  
+  /* Shimmer animation for loading placeholder */
+  @keyframes shimmer {
+    0% {
+      transform: scale(100%);
+    }
+    50% {
+      transform: scale(110%);
+    }
+    100% {
+      transform: scale(100%);
+    }
+  }
+  
+  .loading-card {
+    opacity: 0.6;
+    background: linear-gradient(
+      to right,
+      #e0e0e0 0%,
+      #f5f5f5 50%,
+      #e0e0e0 100%
+    );
+    background-size: 200% 100%;
+    //animation: shimmer 1.5s infinite linear;
+  }
+  
